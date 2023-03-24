@@ -7,14 +7,22 @@ import { Link } from "react-router-dom";
 // firebase
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from ".././firebase.config";
+import { useStateValue } from "../contexts/StateProvider";
+import { actionType } from "../contexts/reducer";
 
 const Header = () => {
   // onLogin
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const [{ user }, dispatch] = useStateValue();
   const logIn = async () => {
-    const response = await signInWithPopup(firebaseAuth, provider);
-    console.log(response);
+    const {
+      user: { refreshToken, providerData },
+    } = await signInWithPopup(firebaseAuth, provider);
+    dispatch({
+      type: actionType.SET_USER,
+      user: providerData[0],
+    });
   };
 
   return (
@@ -23,7 +31,7 @@ const Header = () => {
       <div className="hidden md:flex h-full w-full items-center justify-between">
         {/* logo */}
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="w-10 object-cover" />
+          <img src={logo} alt="logo" className="w-10 md:w-12 object-cover" />
           <p className="text-headingColor text-xl font-bold"> City</p>
         </Link>
         <div className="flex items-center gap-8">
@@ -53,9 +61,9 @@ const Header = () => {
           <div className="relative">
             <motion.img
               whileTap={{ scale: 0.7 }}
-              src={avatar}
+              src={user ? user.photoURL : avatar}
               alt="profile"
-              className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer"
+              className="w-11 min-w-[40px] h-11 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full"
               onClick={logIn}
             />
           </div>

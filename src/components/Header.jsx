@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-screen fixed z-50 p-3 px-4 md:p-6 md:px-16">
+    <header className="w-screen fixed z-50 p-3 px-4 md:p-6 md:px-16 bg-primary">
       {/* desktop & tablet */}
       <div className="hidden md:flex h-full w-full items-center justify-between">
         {/* logo */}
@@ -126,7 +126,11 @@ const Header = () => {
         </div>
         {/* logo */}
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="w-10 md:w-12 object-cover" />
+          <img
+            src={logo}
+            alt="logo"
+            className="w-10 md:w-12 object-cover rounded-full"
+          />
           <p className="text-headingColor text-xl font-bold"> City</p>
         </Link>
         <div className="relative">

@@ -16,20 +16,23 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { storage } from "../firebase.config";
-// import { getAllFoodItems, saveItem } from "../utils/firebaseFunctions";
-// import { actionType } from "../context/reducer";
-// import { useStateValue } from "../context/StateProvider";
+import { getAllFoodItems, saveItem } from "../utils/firebasefunctions";
+import { actionType } from "../contexts/reducer";
+import { useStateValue } from "../contexts/StateProvider";
 
 const CreateContainer = () => {
+  // states
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("Select Category");
   const [isFields, setIsFields] = useState(false);
   const [alertStatus, setAlertStatus] = useState("danger");
   const [imageAsset, setImageAsset] = useState(null);
   const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  // dispatch
+  const [{}, dispatch] = useStateValue();
 
   const uploadImage = (e) => {
     setIsLoading(true);
@@ -104,6 +107,15 @@ const CreateContainer = () => {
           qty: 1,
           price: price,
         };
+        saveItem(data);
+        setIsLoading(false);
+        setIsFields(true);
+        setMsg(`Data uploaded Sucessfully...`);
+        clearData();
+        setAlertStatus("success");
+        setTimeout(() => {
+          setIsFields(false);
+        }, 4000);
       }
     } catch (error) {
       console.log(error);
@@ -115,6 +127,24 @@ const CreateContainer = () => {
         setIsLoading(false);
       }, 4000);
     }
+    fetchData();
+  };
+
+  const clearData = () => {
+    setTitle("");
+    setImageAsset(null);
+    setCalories("");
+    setPrice("");
+    setCategory("Select Category");
+  };
+
+  const fetchData = async () => {
+    await getAllFoodItems().then((data) => {
+      dispatch({
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
+      });
+    });
   };
 
   return (
@@ -149,6 +179,7 @@ const CreateContainer = () => {
         <div className="w-full">
           <select
             onChange={(e) => setCategory(e.target.value)}
+            value={category}
             className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
           >
             <option value="other" className="bg-white">
@@ -242,7 +273,7 @@ const CreateContainer = () => {
         <div className="flex items-center w-full">
           <button
             type="button"
-            className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold"
+            className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 hover:bg-emerald-600 duration-200 transition-all  px-12 py-2 rounded-lg text-lg text-white font-semibold"
             onClick={saveDetails}
           >
             Save

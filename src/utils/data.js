@@ -30,7 +30,7 @@ export const heropData = [
     id: 4,
     name: "Fish Kebab",
     decp: "Mixed Kebab Plate",
-    price: "5.25",
+    price: "15.25",
     imageSrc: fish1,
   },
 ];

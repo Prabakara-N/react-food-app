@@ -9,7 +9,6 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from ".././firebase.config";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
-import { type } from "@testing-library/user-event/dist/type";
 
 const Header = () => {
   // onLogin
@@ -23,7 +22,7 @@ const Header = () => {
   const logIn = async () => {
     if (!user) {
       const {
-        user: { refreshToken, providerData },
+        user: { providerData },
       } = await signInWithPopup(firebaseAuth, provider);
       dispatch({
         type: actionType.SET_USER,

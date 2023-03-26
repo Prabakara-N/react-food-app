@@ -1,13 +1,31 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
+import NotFound from "../assets/img/NotFound.svg";
+import { useStateValue } from "../contexts/StateProvider";
+import { actionType } from "../contexts/reducer";
 
 const RowContainer = ({ flag, data, scrollValue }) => {
   const [items, setItems] = useState([]);
+  const [{ cartItems }, dispatch] = useStateValue();
   const rowContainer = useRef();
+
+  const addtocart = () => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  };
+
+  useEffect(() => {
+    addtocart();
+  }, [items]);
+
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
+
   return (
     <div
       ref={rowContainer}
@@ -62,7 +80,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
         <div className="w-full flex flex-col items-center justify-center">
           <img src={NotFound} className="h-340" />
           <p className="text-xl text-headingColor font-semibold my-2">
-            Items Not Available
+            Items Not Available !
           </p>
         </div>
       )}

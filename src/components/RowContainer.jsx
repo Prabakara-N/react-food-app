@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
 
 const RowContainer = ({ flag, data, scrollValue }) => {
+  const [items, setItems] = useState([]);
   const rowContainer = useRef();
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;

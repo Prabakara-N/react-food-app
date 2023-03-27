@@ -18,7 +18,7 @@ const CartItem = ({ item, setFlag, flag }) => {
   };
 
   useEffect(() => {
-    items = cartItems;
+    items = cartItems; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty, items]);
 
   const updateQty = (action, id) => {

@@ -9,8 +9,19 @@ import CartContainer from "./CartContainer";
 
 const MainContainer = () => {
   const [{ foodItems, cartShow }] = useStateValue();
-  const [scrollValue, setScrollValue] = useState(0);
-  useEffect(() => {}, [scrollValue]);
+  // id for scroll
+  const id = "slider";
+
+  // slider animation
+  const slideLeft = () => {
+    let slider = document.getElementById(id);
+    slider.scrollLeft = slider.scrollLeft - 300;
+  };
+
+  const slideRight = () => {
+    let slider = document.getElementById(id);
+    slider.scrollLeft = slider.scrollLeft + 300;
+  };
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
@@ -25,21 +36,23 @@ const MainContainer = () => {
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-red-500 hover:bg-red-600 cursor-pointer  hover:shadow-lg flex items-center justify-center"
-              onClick={() => setScrollValue(-200)}
+              // onClick={() => setScrollValue(-200)}
+              onClick={slideLeft}
             >
               <MdChevronLeft className="text-lg text-white" />
             </motion.div>
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-red-500 hover:bg-red-600 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
-              onClick={() => setScrollValue(200)}
+              // onClick={() => setScrollValue(200)}
+              onClick={slideRight}
             >
               <MdChevronRight className="text-lg text-white" />
             </motion.div>
           </div>
         </div>
         <RowContainer
-          scrollValue={scrollValue}
+          id={id}
           flag={true}
           data={foodItems?.filter((item) => item.category === "fruits")}
         />

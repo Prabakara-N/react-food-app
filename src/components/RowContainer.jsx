@@ -24,7 +24,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
   useEffect(() => {
     addtocart(); // eslint-disable-next-line react-hooks/exhaustive-deps
-    localStorage.setItem("Mycart", JSON.stringify(items));
+    localStorage.setItem("Mycart", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   useEffect(() => {

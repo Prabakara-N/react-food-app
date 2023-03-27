@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
 import NotFound from "../assets/img/NotFound.svg";

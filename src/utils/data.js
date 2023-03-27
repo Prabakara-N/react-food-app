@@ -64,12 +64,22 @@ export const categories = [
   },
   {
     id: 6,
+    name: "Pizza",
+    urlParamName: "pizza",
+  },
+  {
+    id: 7,
+    name: "Burger",
+    urlParamName: "burger",
+  },
+  {
+    id: 8,
     name: "Icecreams",
     urlParamName: "icecreams",
   },
 
   {
-    id: 7,
+    id: 9,
     name: "Soft Drinks",
     urlParamName: "drinks",
   },

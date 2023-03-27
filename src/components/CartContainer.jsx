@@ -33,7 +33,7 @@ const CartContainer = () => {
       cartItems: [],
     });
 
-    localStorage.setItem("cartItems", JSON.stringify([]));
+    localStorage.setItem("Mycart", JSON.stringify([]));
   };
 
   return (

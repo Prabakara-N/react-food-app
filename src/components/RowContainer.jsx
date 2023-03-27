@@ -5,8 +5,12 @@ import NotFound from "../assets/img/NotFound.svg";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
+let cartData = localStorage.getItem("Mycart")
+  ? JSON.parse(localStorage.getItem("Mycart"))
+  : [];
+
 const RowContainer = ({ flag, data, scrollValue }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(cartData);
 
   const [{ cartItems }, dispatch] = useStateValue();
   const rowContainer = useRef();
@@ -16,11 +20,11 @@ const RowContainer = ({ flag, data, scrollValue }) => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
-    localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
   useEffect(() => {
     addtocart(); // eslint-disable-next-line react-hooks/exhaustive-deps
+    localStorage.setItem("Mycart", JSON.stringify(items));
   }, [items]);
 
   useEffect(() => {

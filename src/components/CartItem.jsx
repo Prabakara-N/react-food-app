@@ -20,22 +20,23 @@ const CartItem = ({ item, setFlag, flag }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("myCart", JSON.stringify(items));
+    localStorage.setItem("myCart", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty, items]);
 
   const updateQty = (action, id) => {
-    if (action == "add") {
+    if (action === "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
         if (item.id === id) {
           item.qty += 1;
           setFlag(flag + 1);
+          return;
         }
       });
       cartDispatch();
     } else {
       // initial state value is one so you need to check if 1 then remove it
-      if (qty == 1) {
+      if (qty === 1) {
         items = cartItems.filter((item) => item.id !== id);
         setFlag(flag + 1);
         cartDispatch();
@@ -45,6 +46,7 @@ const CartItem = ({ item, setFlag, flag }) => {
           if (item.id === id) {
             item.qty -= 1;
             setFlag(flag + 1);
+            return;
           }
         });
         cartDispatch();

@@ -27,10 +27,10 @@ const CartItem = ({ item, setFlag, flag }) => {
     if (action === "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         if (item.id === id) {
           item.qty += 1;
           setFlag(flag + 1);
-          return;
         }
       });
       cartDispatch();
@@ -43,10 +43,10 @@ const CartItem = ({ item, setFlag, flag }) => {
       } else {
         setQty(qty - 1);
         cartItems.map((item) => {
+          // eslint-disable-next-line react-hooks/exhaustive-deps
           if (item.id === id) {
             item.qty -= 1;
             setFlag(flag + 1);
-            return;
           }
         });
         cartDispatch();

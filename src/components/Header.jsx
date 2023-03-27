@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/img/chicken-grilled-logo.png";
-import avatar from "../assets/img/avatar-img.png";
+import avatar from "../assets/img/profile-pic.png";
 import { motion } from "framer-motion";
 import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -108,7 +108,11 @@ const Header = () => {
               whileTap={{ scale: 0.7 }}
               src={user ? user.photoURL : avatar}
               alt="profile"
-              className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full"
+              className={`${
+                user.photoURL
+                  ? "none"
+                  : "border-solid border-gray-400 p-[1px] border-[1px]"
+              }w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer  rounded-full`}
               onClick={logIn}
             />
             {isMenu && (

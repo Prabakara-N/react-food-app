@@ -17,9 +17,9 @@ const HomeContainer = () => {
             />
           </div>
         </div>
-        <p className="text-[2.5rem] lg:text-[4.5rem] font-bold tracking-wide text-headingColor">
+        <p className="text-[2.5rem] lg:text-[4.15rem] font-bold tracking-wide text-headingColor">
           Enjoy{" "}
-          <span className="text-red-600 text-[3rem] lg:text-[5rem]">
+          <span className="text-red-600 text-[3rem] lg:text-[4.5rem]">
             Delicious Food
           </span>{" "}
           At Your Door Step

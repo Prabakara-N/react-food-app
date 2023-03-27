@@ -8,7 +8,8 @@ import { getAllFoodItems } from "./utils/firebasefunctions";
 import { actionType } from "./contexts/reducer";
 
 const App = () => {
-  const [{}, dispatch] = useStateValue(); // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [{ foodItems }, dispatch] = useStateValue(); // eslint-disable-next-line react-hooks/exhaustive-deps
+  console.log(foodItems);
 
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {

@@ -96,7 +96,9 @@ const Header = () => {
             <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
             {cartItems && cartItems.length > 0 && (
               <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-                <p className="text-xs text-white font-semibold">1</p>
+                <p className="text-xs text-white font-semibold">
+                  {cartItems.length}
+                </p>
               </div>
             )}
           </div>
@@ -149,7 +151,9 @@ const Header = () => {
           <MdShoppingBasket className="text-textColor text-2xl ml-8 cursor-pointer" />
           {cartItems && cartItems.length > 0 && (
             <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center">
-              <p className="text-xs text-white font-semibold">1</p>
+              <p className="text-xs text-white font-semibold">
+                {cartItems.length}
+              </p>
             </div>
           )}
         </div>

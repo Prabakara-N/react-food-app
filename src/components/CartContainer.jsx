@@ -5,7 +5,7 @@ import { RiRefreshFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
-import EmptyCart from "../assets/img/cart-empty.jpeg";
+import EmptyCart from "../assets/img/empty-cart-img.jpeg";
 import CartItem from "./CartItem";
 
 const CartContainer = () => {
@@ -24,7 +24,7 @@ const CartContainer = () => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
-    setTot(totalPrice);
+    setTot(totalPrice); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tot, flag]);
 
   const clearCart = () => {
@@ -43,7 +43,7 @@ const CartContainer = () => {
       exit={{ opacity: 0, x: 200 }}
       className="fixed top-0 right-0 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col z-[101]"
     >
-      <div className="w-full flex items-center justify-between p-4 cursor-pointer">
+      <div className="w-full flex items-center justify-between p-4 cursor-pointer glass">
         <motion.div whileTap={{ scale: 0.75 }} onClick={showCart}>
           <MdOutlineKeyboardBackspace className="text-textColor text-3xl" />
         </motion.div>

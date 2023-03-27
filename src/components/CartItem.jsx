@@ -4,19 +4,24 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
-let items = [];
+let items = localStorage.getItem("myCart")
+  ? JSON.parse(localStorage.getItem("myCart"))
+  : [];
 
 const CartItem = ({ item, setFlag, flag }) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [qty, setQty] = useState(item.qty);
 
   const cartDispatch = () => {
-    localStorage.setItem("cartItems", JSON.stringify(items));
     dispatch({
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem("myCart", JSON.stringify(items));
+  }, [qty, items]);
 
   const updateQty = (action, id) => {
     if (action == "add") {
@@ -48,7 +53,7 @@ const CartItem = ({ item, setFlag, flag }) => {
   };
 
   useEffect(() => {
-    items = cartItems;
+    items = cartItems; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty, items]);
 
   return (

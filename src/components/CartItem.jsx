@@ -32,6 +32,7 @@ const CartItem = ({ item, setFlag, flag }) => {
           item.qty += 1;
           setFlag(flag + 1);
         }
+        return item;
       });
       cartDispatch();
     } else {
@@ -48,6 +49,7 @@ const CartItem = ({ item, setFlag, flag }) => {
             item.qty -= 1;
             setFlag(flag + 1);
           }
+          return item;
         });
         cartDispatch();
       }

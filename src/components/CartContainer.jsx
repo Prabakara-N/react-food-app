@@ -24,9 +24,8 @@ const CartContainer = () => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
-    setTot(totalPrice);     // eslint-disable-next-line react-hooks/exhaustive-deps
-
-  }, [tot, flag]);
+    setTot(totalPrice); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tot, flag]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   const clearCart = () => {
     dispatch({

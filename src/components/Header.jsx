@@ -108,11 +108,7 @@ const Header = () => {
               whileTap={{ scale: 0.7 }}
               src={user ? user.photoURL : avatar}
               alt="profile"
-              className={`${
-                user
-                  ? "none"
-                  : "border-solid border-gray-400 p-[1px] border-[1px]"
-              }w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer  rounded-full`}
+              className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer  rounded-full bg-gray-300"
               onClick={logIn}
             />
             {isMenu && (
@@ -175,7 +171,7 @@ const Header = () => {
             whileTap={{ scale: 0.7 }}
             src={user ? user.photoURL : avatar}
             alt="profile"
-            className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full"
+            className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full bg-gray-300"
             onClick={logIn}
           />
           {isMenu && (

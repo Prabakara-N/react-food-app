@@ -53,7 +53,7 @@ const Header = () => {
         {/* logo */}
         <Link to={"/"} className="flex items-center gap-2">
           <img src={logo} alt="logo" className="w-10 md:w-12 object-cover" />
-          <p className="text-headingColor text-xl font-bold"> City</p>
+          <p className="text-headingColor text-xl font-bold"> SWAG</p>
         </Link>
         <div className="flex items-center gap-8">
           {/* menu */}
@@ -64,25 +64,25 @@ const Header = () => {
             className="flex items-center gap-8 "
           >
             <li
-              className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out"
+              className="text-base text-textColor duration-300 transition-all cursor-pointer ease-in-out hover:text-red-500"
               onClick={() => setIsMenu(false)}
             >
-              Home
+              <Link to={"/"}>Home</Link>
             </li>
             <li
-              className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out"
+              className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
               onClick={() => setIsMenu(false)}
             >
               Menu
             </li>
             <li
-              className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out"
+              className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
               onClick={() => setIsMenu(false)}
             >
               About Us
             </li>
             <li
-              className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out"
+              className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
               onClick={() => setIsMenu(false)}
             >
               Service
@@ -164,7 +164,7 @@ const Header = () => {
             alt="logo"
             className="w-10 md:w-12 object-cover rounded-full"
           />
-          <p className="text-headingColor text-xl font-bold"> City</p>
+          <p className="text-headingColor text-xl font-bold"> SWAG</p>
         </Link>
         <div className="relative">
           <motion.img
@@ -196,25 +196,25 @@ const Header = () => {
               <ul className="flex flex-col">
                 <li
                   onClick={() => setIsMenu(false)}
-                  className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
+                  className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
                 >
-                  Home
+                  <Link to={"/"}>Home</Link>
                 </li>
                 <li
                   onClick={() => setIsMenu(false)}
-                  className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
+                  className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
                 >
                   Menu
                 </li>
                 <li
                   onClick={() => setIsMenu(false)}
-                  className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
+                  className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
                 >
                   About Us
                 </li>
                 <li
                   onClick={() => setIsMenu(false)}
-                  className="text-base text-textColor hover:text-headingColor duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
+                  className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
                 >
                   Service
                 </li>

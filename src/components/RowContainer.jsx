@@ -5,11 +5,9 @@ import NotFound from "../assets/img/NotFound.svg";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
-const RowContainer = ({ flag, data, scrollValue }) => {
+const RowContainer = ({ flag, data, id }) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [items, setItems] = useState(cartItems);
-
-  const rowContainer = useRef();
 
   const addtocart = () => {
     dispatch({
@@ -23,13 +21,9 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     localStorage.setItem("cartItems", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
-  useEffect(() => {
-    rowContainer.current.scrollLeft += scrollValue;
-  }, [scrollValue]);
-
   return (
     <div
-      ref={rowContainer}
+      id={id}
       className={`w-full flex items-center gap-3  my-12 scroll-smooth bg-gray-100  ${
         flag
           ? "overflow-x-scroll scrollbar-none"

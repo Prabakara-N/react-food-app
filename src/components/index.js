@@ -7,3 +7,5 @@ export { default as RowContainer } from "./RowContainer.jsx";
 export { default as MenuContainer } from "./MenuContainer.jsx";
 export { default as CartContainer } from "./CartContainer.jsx";
 export { default as CartItem } from "./CartItem.jsx";
+export { default as Footer } from "./Footer.jsx";
+export { default as SocialMedia } from "./SocialMedia.jsx";

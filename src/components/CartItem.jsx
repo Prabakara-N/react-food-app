@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
-let items = localStorage.getItem("myCart")
-  ? JSON.parse(localStorage.getItem("myCart"))
-  : [];
+let items = [];
 
 const CartItem = ({ item, setFlag, flag }) => {
   const [{ cartItems }, dispatch] = useStateValue();
@@ -20,14 +18,13 @@ const CartItem = ({ item, setFlag, flag }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("myCart", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
+    items = cartItems;
   }, [qty, items]);
 
   const updateQty = (action, id) => {
     if (action === "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         if (item.id === id) {
           item.qty += 1;
           setFlag(flag + 1);
@@ -37,7 +34,6 @@ const CartItem = ({ item, setFlag, flag }) => {
       });
       cartDispatch();
     } else {
-      // initial state value is one so you need to check if 1 then remove it
       if (qty === 1) {
         items = cartItems.filter((item) => item.id !== id);
         setFlag(flag + 1);
@@ -45,7 +41,6 @@ const CartItem = ({ item, setFlag, flag }) => {
       } else {
         setQty(qty - 1);
         cartItems.map((item) => {
-          // eslint-disable-next-line react-hooks/exhaustive-deps
           if (item.id === id) {
             item.qty -= 1;
             setFlag(flag + 1);

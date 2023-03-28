@@ -9,6 +9,30 @@ const RowContainer = ({ flag, data, id }) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [items, setItems] = useState(cartItems);
 
+  // // add to cart
+  // const addToCart = (product, id) => {
+  //   const newItem = product;
+  //   // check if the item is already in the cart
+  //   const cartItem = items.find((item) => {
+  //     return item.id === id;
+  //   });
+  //   // if cart item is already in the cart
+  //   if (cartItem) {
+  //     const newCart = items.map((item) => {
+  //       if (item.id === id) {
+  //         return { ...item, qty: cartItem.qty + 1 };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     setItems(newCart);
+  //     cartDispatch();
+  //   } else {
+  //     setItems([...items, newItem]);
+  //     cartDispatch();
+  //   }
+  // };
+
   const addtocart = () => {
     dispatch({
       type: actionType.SET_CART_ITEMS,
@@ -51,6 +75,7 @@ const RowContainer = ({ flag, data, id }) => {
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
                 onClick={() => setItems([...cartItems, item])}
+                // onClick={() => addToCart(item, item.id)}
               >
                 <MdShoppingBasket className="text-white" />
               </motion.div>

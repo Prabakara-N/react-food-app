@@ -3,8 +3,8 @@ import { footerImages } from "../utils/data";
 
 const FooterImages = () => {
   return (
-    <div className="max-w-[1640px] m-auto px-4 pb-3 -mt-8">
-      <h1 className="text-red-600 font-bold text-4xl text-center">
+    <div className="max-w-[1640px] m-auto px-4 pb-3 -mt-14">
+      <h1 className="text-red-600 font-bold md:text-3xl lg:text-4xl text-xl text-center">
         Top Rated Menu Items
       </h1>
       {/* Categories */}

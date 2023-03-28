@@ -6,6 +6,7 @@ import RowContainer from "./RowContainer";
 import { useStateValue } from "../contexts/StateProvider";
 import MenuContainer from "./MenuContainer";
 import CartContainer from "./CartContainer";
+import FooterImages from "./FooterImages";
 
 const MainContainer = () => {
   const [{ foodItems, cartShow }] = useStateValue();
@@ -59,6 +60,7 @@ const MainContainer = () => {
       </section>
       <MenuContainer />
       {cartShow && <CartContainer />}
+      <FooterImages />
     </div>
   );
 };

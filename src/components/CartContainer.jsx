@@ -7,6 +7,7 @@ import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 import EmptyCart from "../assets/img/empty-cart-img.jpeg";
 import CartItem from "./CartItem";
+import { toast } from "react-toastify";
 
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
@@ -32,6 +33,10 @@ const CartContainer = () => {
       type: actionType.SET_CART_ITEMS,
       cartItems: [],
     });
+
+    if (cartItems.length > 0) {
+      toast.success("Cart Cleared Successfully...!");
+    }
 
     localStorage.setItem("cartItems", JSON.stringify([]));
   };

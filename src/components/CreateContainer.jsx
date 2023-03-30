@@ -19,6 +19,7 @@ import { storage } from "../firebase.config";
 import { getAllFoodItems, saveItem } from "../utils/firebasefunctions";
 import { actionType } from "../contexts/reducer";
 import { useStateValue } from "../contexts/StateProvider";
+import { toast } from "react-toastify";
 
 const CreateContainer = () => {
   // states
@@ -26,10 +27,7 @@ const CreateContainer = () => {
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("Select Category");
-  const [isFields, setIsFields] = useState(false);
-  const [alertStatus, setAlertStatus] = useState("danger");
   const [imageAsset, setImageAsset] = useState(null);
-  const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // dispatch
   const [dispatch] = useStateValue();
@@ -48,12 +46,9 @@ const CreateContainer = () => {
         console.log(uploadProgress);
       },
       (error) => {
-        setIsFields(true);
-        setMsg(`Error while uploading : Try Again...`);
+        toast.error(`Error while uploading : Try Again...`);
         console.log(error);
-        setAlertStatus("danger");
         setTimeout(() => {
-          setIsFields(false);
           setIsLoading(false);
         }, 4000);
       },
@@ -61,12 +56,7 @@ const CreateContainer = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageAsset(downloadURL);
           setIsLoading(false);
-          setIsFields(true);
-          setMsg("Image uploaded successfully...!");
-          setAlertStatus("success");
-          setTimeout(() => {
-            setIsFields(false);
-          }, 4000);
+          toast.success("Image uploaded successfully...!");
         });
       }
     );
@@ -77,13 +67,8 @@ const CreateContainer = () => {
     const deleteRef = ref(storage, imageAsset);
     deleteObject(deleteRef).then(() => {
       setImageAsset(null);
-      setAlertStatus("success");
       setIsLoading(false);
-      setMsg("Image Deleted successfully...!");
-      setAlertStatus("success");
-      setTimeout(() => {
-        setIsFields(false);
-      }, 4000);
+      toast.success("Image Deleted successfully...!");
     });
   };
 
@@ -91,11 +76,8 @@ const CreateContainer = () => {
     setIsLoading(true);
     try {
       if (!title || !calories || !imageAsset || !price || !category) {
-        setIsFields(true);
-        setMsg(`Required fields can't be empty`);
-        setAlertStatus("danger");
+        toast.error(`Required fields can't be empty`);
         setTimeout(() => {
-          setIsFields(false);
           setIsLoading(false);
         }, 4000);
       } else {
@@ -110,21 +92,13 @@ const CreateContainer = () => {
         };
         saveItem(data);
         setIsLoading(false);
-        setIsFields(true);
-        setMsg(`Data uploaded Sucessfully...`);
+        toast.success(`Data uploaded Sucessfully...`);
         clearData();
-        setAlertStatus("success");
-        setTimeout(() => {
-          setIsFields(false);
-        }, 4000);
       }
     } catch (error) {
       console.log(error);
-      setIsFields(true);
-      setMsg(`Error while uploading : Try Again...`);
-      setAlertStatus("danger");
+      toast.error(`Error while uploading : Try Again...`);
       setTimeout(() => {
-        setIsFields(false);
         setIsLoading(false);
       }, 4000);
     }
@@ -151,21 +125,6 @@ const CreateContainer = () => {
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
       <div className="w-[90%] md:w-[75%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center gap-4">
-        {isFields && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={`w-full p-2 rounded-lg text-center text-lg font-semibold ${
-              alertStatus === "danger"
-                ? "bg-red-400 text-red-700"
-                : "bg-green-400 text-emerald-800"
-            }`}
-          >
-            {msg}
-          </motion.p>
-        )}
-
         <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
           <MdFastfood className="text-xl text-gray-700" />
           <input

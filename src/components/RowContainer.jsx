@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import NotFound from "../assets/img/NotFound.svg";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
+import { toast } from "react-toastify";
 
 const RowContainer = ({ flag, data, id }) => {
   const [{ cartItems }, dispatch] = useStateValue();
@@ -38,6 +39,7 @@ const RowContainer = ({ flag, data, id }) => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
+    toast.success("Item added to cart successfully...!");
   };
 
   useEffect(() => {

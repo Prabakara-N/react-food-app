@@ -39,7 +39,6 @@ const RowContainer = ({ flag, data, id }) => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
-    toast.success("Item added to cart successfully...!");
   };
 
   useEffect(() => {
@@ -76,7 +75,12 @@ const RowContainer = ({ flag, data, id }) => {
               <motion.div
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
-                onClick={() => setItems([...cartItems, item])}
+                onClick={() => {
+                  setItems([...cartItems, item]);
+                  toast.success("Item added to cart successfully...!", {
+                    autoClose: 2500,
+                  });
+                }}
                 // onClick={() => addToCart(item, item.id)}
               >
                 <MdShoppingBasket className="text-white" />

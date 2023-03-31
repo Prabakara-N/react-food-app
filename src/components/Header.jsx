@@ -69,12 +69,15 @@ const Header = () => {
             >
               <Link to={"/"}>Home</Link>
             </li>
-            <li
-              className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
-              onClick={() => setIsMenu(false)}
-            >
-              Menu
-            </li>
+            <Link to={"/menu"}>
+              <li
+                className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
+                onClick={() => setIsMenu(false)}
+              >
+                Menu
+              </li>
+            </Link>
+
             <li
               className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out"
               onClick={() => setIsMenu(false)}
@@ -200,12 +203,15 @@ const Header = () => {
                 >
                   <Link to={"/"}>Home</Link>
                 </li>
-                <li
-                  onClick={() => setIsMenu(false)}
-                  className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
-                >
-                  Menu
-                </li>
+                <Link to="/menu">
+                  <li
+                    onClick={() => setIsMenu(false)}
+                    className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"
+                  >
+                    Menu
+                  </li>
+                </Link>
+
                 <li
                   onClick={() => setIsMenu(false)}
                   className="text-base text-textColor hover:text-red-500 duration-300 transition-all cursor-pointer ease-in-out px-4 py-2 hover:bg-slate-200"

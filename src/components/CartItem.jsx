@@ -55,6 +55,7 @@ const CartItem = ({ item, setFlag, flag }) => {
 
   useEffect(() => {
     items = cartItems; // eslint-disable-next-line react-hooks/exhaustive-deps
+    localStorage.setItem("cartItems", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qty, items]);
 
   return (

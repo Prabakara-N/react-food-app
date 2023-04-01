@@ -37,7 +37,6 @@ const MainContainer = () => {
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-red-500 hover:bg-red-600 cursor-pointer  hover:shadow-lg flex items-center justify-center"
-              // onClick={() => setScrollValue(-200)}
               onClick={slideLeft}
             >
               <MdChevronLeft className="text-lg text-white" />
@@ -45,7 +44,6 @@ const MainContainer = () => {
             <motion.div
               whileTap={{ scale: 0.75 }}
               className="w-8 h-8 rounded-lg bg-red-500 hover:bg-red-600 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center"
-              // onClick={() => setScrollValue(200)}
               onClick={slideRight}
             >
               <MdChevronRight className="text-lg text-white" />

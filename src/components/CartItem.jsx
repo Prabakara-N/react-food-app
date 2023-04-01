@@ -17,18 +17,13 @@ const CartItem = ({ item, setFlag, flag }) => {
     });
   };
 
-  useEffect(() => {
-    items = cartItems; // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [qty, items]);
-
   const updateQty = (action, id) => {
     if (action === "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
         if (item.id === id) {
-          item.qty += 1;
           setFlag(flag + 1);
-          return item;
+          return (item.qty += 1);
         }
         return item;
       });
@@ -42,9 +37,8 @@ const CartItem = ({ item, setFlag, flag }) => {
         setQty(qty - 1);
         cartItems.map((item) => {
           if (item.id === id) {
-            item.qty -= 1;
             setFlag(flag + 1);
-            return item;
+            return (item.qty -= 1);
           }
           return item;
         });

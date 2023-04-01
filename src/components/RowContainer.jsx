@@ -11,38 +11,32 @@ const RowContainer = ({ flag, data, id }) => {
   const [items, setItems] = useState(cartItems);
 
   // // add to cart
-  // const addToCart = (product, id) => {
-  //   const newItem = product;
-  //   // check if the item is already in the cart
-  //   const cartItem = items.find((item) => {
-  //     return item.id === id;
-  //   });
-  //   // if cart item is already in the cart
-  //   if (cartItem) {
-  //     const newCart = items.map((item) => {
-  //       if (item.id === id) {
-  //         return { ...item, qty: cartItem.qty + 1 };
-  //       } else {
-  //         return item;
-  //       }
-  //     });
-  //     setItems(newCart);
-  //     cartDispatch();
-  //   } else {
-  //     setItems([...items, newItem]);
-  //     cartDispatch();
-  //   }
-  // };
+  const addToCart = (item) => {
+    const existingItem = items.find((cartItem) => cartItem.id === item.id);
+    if (existingItem) {
+      // If item already exists in cart, update the quantity
+      setItems(
+        items.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, qty: cartItem.qty + 1 }
+            : cartItem
+        )
+      );
+    } else {
+      // If item does not exist in cart, add a new entry
+      setItems([...items, { ...item }]);
+    }
 
-  const addtocart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: items,
+    toast.success("Item added to cart successfully...!", {
+      autoClose: 2500,
     });
   };
 
   useEffect(() => {
-    addtocart(); // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
     localStorage.setItem("cartItems", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
@@ -73,15 +67,9 @@ const RowContainer = ({ flag, data, id }) => {
                 />
               </motion.div>
               <motion.div
-                whileTap={{ scale: 0.75 }}
+                whileTap={{ scale: 0.85 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
-                onClick={() => {
-                  setItems([...cartItems, item]);
-                  toast.success("Item added to cart successfully...!", {
-                    autoClose: 2500,
-                  });
-                }}
-                // onClick={() => addToCart(item, item.id)}
+                onClick={() => addToCart(item)}
               >
                 <MdShoppingBasket className="text-white" />
               </motion.div>

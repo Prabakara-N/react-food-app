@@ -1,12 +1,12 @@
 import React from "react";
-import HomeContainer from "./HomeContainer";
+import HomeContainer from "../components/HomeContainer";
 import { motion } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import RowContainer from "./RowContainer";
+import RowContainer from "../components/RowContainer";
 import { useStateValue } from "../contexts/StateProvider";
 import MenuContainer from "./MenuContainer";
-import CartContainer from "./CartContainer";
-import FooterImages from "./FooterImages";
+import CartContainer from "../components/CartContainer";
+import FooterImages from "../components/FooterImages";
 
 const MainContainer = () => {
   const [{ foodItems, cartShow }] = useStateValue();

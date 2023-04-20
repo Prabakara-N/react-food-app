@@ -1,23 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import "./styles/App.css";
 import { Routes, Route } from "react-router-dom";
+import { Header, Footer } from "./components";
 import {
-  Header,
   MainContainer,
   CreateContainer,
-  Footer,
   MenuContainer,
-} from "./components";
+  Error,
+  Checkout,
+} from "./pages";
 import { AnimatePresence } from "framer-motion";
-import "./styles/App.css";
 import { useStateValue } from "./contexts/StateProvider";
 import { getAllFoodItems } from "./utils/firebasefunctions";
 import { actionType } from "./contexts/reducer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const initialState = {
+  userName: "",
+  email: "",
+  number: "",
+  address: "",
+};
+
 const App = () => {
   const [{ cartShow }, dispatch] = useStateValue();
   console.log(cartShow);
+  const [form, setForm] = useState(initialState);
 
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
@@ -42,6 +51,11 @@ const App = () => {
             <Route path="/" element={<MainContainer />} />
             <Route path="/menu" element={<MenuContainer />} />
             <Route path="/createItem" element={<CreateContainer />} />
+            <Route
+              path="/checkout"
+              element={<Checkout form={form} setForm={setForm} />}
+            />
+            <Route path="*" element={<Error />} />
           </Routes>
         </main>
         <Footer />

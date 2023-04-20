@@ -3,7 +3,7 @@ import { IoFastFood } from "react-icons/io5";
 import { categories } from "../utils/data";
 import { motion } from "framer-motion";
 import { useStateValue } from "../contexts/StateProvider";
-import RowContainer from "./RowContainer";
+import RowContainer from "../components/RowContainer";
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState("chicken");

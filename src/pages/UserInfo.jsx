@@ -4,38 +4,11 @@ import { MdDone } from "react-icons/md";
 import { Link } from "react-router-dom";
 import avatar from "../assets/img/profile-pic.png";
 import { useStateValue } from "../contexts/StateProvider";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase.config";
 
-const UserInfo = ({ form, setForm }) => {
+const UserInfo = ({ form, fetchUserDetails }) => {
   const [{ user }] = useStateValue();
 
-  const { userId, docId, userName, email, address, number, city } = form;
-
-  // getting user profile
-  const fetchUserDetails = async () => {
-    if (user && user?.uid) {
-      const q = query(
-        collection(db, "userInfo"),
-        where("userId", "==", user?.uid)
-      );
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.docs.map((doc) => {
-        setForm({ ...form, docId: doc.id });
-        const userData = doc.data();
-        if (userData) {
-          setForm({ ...form, userId: userData.userId });
-          setForm({ ...form, userName: userData.userName });
-          setForm({ ...form, email: userData.email });
-          setForm({ ...form, number: userData.number });
-          setForm({ ...form, address: userData.address });
-          setForm({ ...form, city: userData.city });
-        }
-        return doc.id;
-      });
-    }
-  };
+  const { userId, docId, address, number, city } = form;
 
   useEffect(() => {
     fetchUserDetails();
@@ -58,14 +31,14 @@ const UserInfo = ({ form, setForm }) => {
               <div className="text-center">
                 <p className="mb-2">Name :</p>
                 <h2 className="text-center text-lg font-medium bg-black/25 px-2 py-1 rounded-md capitalize inline">
-                  {userName}
+                  {user?.displayName}
                 </h2>
               </div>
               <div className="flex flex-col gap-y-5 sm:flex-row sm:justify-between lg:items-center">
                 <div>
                   <p className="mb-4 pl-2">Email :</p>
                   <p className="text-center bg-black/25 px-2 py-2 rounded-md inline">
-                    {email}
+                    {user?.email}
                   </p>
                 </div>
                 <div>
@@ -79,7 +52,7 @@ const UserInfo = ({ form, setForm }) => {
                 <p className="mb-2 pl-2">Address :</p>
                 <p className="bg-black/25 px-3 py-2 rounded-md">{address}</p>
               </div>
-              <div>
+              <div className="-mt-4">
                 <p className="mb-2 pl-2">City :</p>
                 <p className="bg-black/25 px-3 py-2 rounded-md">{city}</p>
               </div>
@@ -114,22 +87,20 @@ const UserInfo = ({ form, setForm }) => {
               <div className="text-center">
                 <p className="mb-2">Name :</p>
                 <h2 className="text-center text-lg font-medium bg-black/25 px-2 py-1 rounded-md w-[65%] mx-auto text-gray-500">
-                  nill
+                  {user?.displayName}
                 </h2>
               </div>
-              <div className="flex gap-1 md:justify-between items-center">
-                <div>
-                  <p className="mb-4 pl-2">Email :</p>
-                  <p className="text-center bg-black/25 px-2 py-2 pr-32 rounded-md inline text-gray-500">
-                    nill
-                  </p>
-                </div>
-                <div>
-                  <p className="mb-4 pl-2">Number :</p>
-                  <p className="text-center bg-black/25 px-2 pr-32 py-2 rounded-md inline text-gray-500">
-                    nill
-                  </p>
-                </div>
+              <div>
+                <p className="mb-4 pl-2">Email :</p>
+                <p className="text-center bg-black/25 px-2 py-2 pr-32 rounded-md inline text-gray-500">
+                  {user?.email}
+                </p>
+              </div>
+              <div>
+                <p className="mb-4 pl-2">Number :</p>
+                <p className="text-center bg-black/25 px-2 pr-32 py-2 rounded-md inline text-gray-500">
+                  nill
+                </p>
               </div>
               <div>
                 <p className="mb-2 pl-2">Address :</p>
@@ -137,7 +108,7 @@ const UserInfo = ({ form, setForm }) => {
                   nill
                 </p>
               </div>
-              <div>
+              <div className="-mt-4">
                 <p className="mb-2 pl-2">City :</p>
                 <p className="bg-black/25 px-3 py-2 rounded-md text-gray-500">
                   nill

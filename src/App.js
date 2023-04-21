@@ -17,6 +17,8 @@ import { getAllFoodItems } from "./utils/firebasefunctions";
 import { actionType } from "./contexts/reducer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "./firebase.config";
 
 const initialState = {
   userId: null,
@@ -29,8 +31,7 @@ const initialState = {
 };
 
 const App = () => {
-  const [{ cartShow }, dispatch] = useStateValue();
-  console.log(cartShow);
+  const [{ user }, dispatch] = useStateValue();
   const [form, setForm] = useState(initialState);
 
   const fetchData = async () => {
@@ -45,6 +46,33 @@ const App = () => {
   useEffect(() => {
     fetchData(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // getting user profile
+  const fetchUserDetails = async () => {
+    if (user && user?.uid) {
+      const q = query(
+        collection(db, "userInfo"),
+        where("userId", "==", user?.uid)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.docs.map((doc) => {
+        setForm({ ...form, docId: doc.id });
+        const userData = doc.data();
+        if (userData) {
+          setForm({ ...form, userId: userData.userId });
+          setForm({ ...form, number: userData.number });
+          setForm({ ...form, address: userData.address });
+          setForm({ ...form, city: userData.city });
+        }
+        return doc.id;
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchUserDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, user?.uid]);
 
   return (
     <AnimatePresence mode="wait">
@@ -61,7 +89,9 @@ const App = () => {
           />
           <Route
             path="/userinfo"
-            element={<UserInfo form={form} setForm={setForm} />}
+            element={
+              <UserInfo form={form} fetchUserDetails={fetchUserDetails} />
+            }
           />
           <Route
             path="/addprofile"

@@ -3,9 +3,7 @@ import React from "react";
 import { MdSaveAlt } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
-
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-
 import { db } from "../firebase.config";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateValue } from "../contexts/StateProvider";

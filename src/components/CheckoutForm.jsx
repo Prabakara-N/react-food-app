@@ -4,19 +4,13 @@ import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
 const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
-  const { userName, email, address, number } = userProfile;
+  const { userName, email, address, number, city } = userProfile;
 
   const [lastName, setLastName] = useState("");
-  const [city, setCity] = useState("");
   const [postCode, setPostCode] = useState("");
   const [cardNum, setCardNum] = useState("");
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
-
-  // const { userName, email, address, setUserName, setEmail, setAddress } =
-  //   UserAuth();
-  // const { setModalIsOpen } = useContext(CartContext);
-  // const { setIsOpen } = useContext(SidebarContext);
 
   const [{ cartShow }, dispatch] = useStateValue();
 
@@ -228,7 +222,9 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
                   id="city"
                   type="text"
                   value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={(e) =>
+                    setForm({ ...userProfile, city: e.target.value })
+                  }
                   placeholder="City"
                   className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
@@ -293,7 +289,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
                     value={year}
                     onChange={handleYear}
                     autoComplete="off"
-                    placeholder="Expiry Date"
+                    placeholder="Expiry Year"
                     className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
@@ -338,7 +334,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
             <div className="mt-4">
               <button
                 type="submit"
-                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-slate-700 hover:bg-slate-800 transition-all duration-200"
+                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200"
               >
                 Proceed To Pay
               </button>

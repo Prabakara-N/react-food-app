@@ -8,6 +8,8 @@ import {
   MenuContainer,
   Error,
   Checkout,
+  UserInfo,
+  AddProfile,
 } from "./pages";
 import { AnimatePresence } from "framer-motion";
 import { useStateValue } from "./contexts/StateProvider";
@@ -17,10 +19,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
+  userId: null,
+  docId: null,
   userName: "",
   email: "",
   number: "",
   address: "",
+  city: "",
 };
 
 const App = () => {
@@ -46,18 +51,28 @@ const App = () => {
       <div className="w-screen h-auto flex flex-col bg-primary">
         <Header />
         <ToastContainer position="top-center" />
-        <main className="mt-14 md:mt-20 px-4 md:px-16 py-4 w-full">
-          <Routes>
-            <Route path="/" element={<MainContainer />} />
-            <Route path="/menu" element={<MenuContainer />} />
-            <Route path="/createItem" element={<CreateContainer />} />
-            <Route
-              path="/checkout"
-              element={<Checkout form={form} setForm={setForm} />}
-            />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<MainContainer />} />
+          <Route path="/menu" element={<MenuContainer />} />
+          <Route path="/createItem" element={<CreateContainer />} />
+          <Route
+            path="/checkout"
+            element={<Checkout form={form} setForm={setForm} />}
+          />
+          <Route
+            path="/userinfo"
+            element={<UserInfo form={form} setForm={setForm} />}
+          />
+          <Route
+            path="/addprofile"
+            element={<AddProfile form={form} setForm={setForm} />}
+          />
+          <Route
+            path="/editprofile/:id"
+            element={<AddProfile form={form} setForm={setForm} />}
+          />
+          <Route path="*" element={<Error />} />
+        </Routes>
         <Footer />
       </div>
     </AnimatePresence>

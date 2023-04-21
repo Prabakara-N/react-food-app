@@ -9,6 +9,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from ".././firebase.config";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   // onLogin
@@ -133,6 +134,14 @@ const Header = () => {
                   </Link>
                 )}
 
+                {user && (
+                  <Link to={"userinfo"}>
+                    <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg">
+                      Profile <FaUserCircle />
+                    </p>
+                  </Link>
+                )}
+
                 <p
                   className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
                   onClick={logOut}
@@ -192,6 +201,14 @@ const Header = () => {
                     className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
                   >
                     New Item <MdAdd />{" "}
+                  </p>
+                </Link>
+              )}
+
+              {user && (
+                <Link to={"userinfo"}>
+                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg">
+                    Profile <FaUserCircle />
                   </p>
                 </Link>
               )}

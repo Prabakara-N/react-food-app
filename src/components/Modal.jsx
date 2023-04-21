@@ -1,31 +1,32 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { FcOk } from "react-icons/fc";
-import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
+import { useStateValue } from "../contexts/StateProvider";
 
-const Modal = () => {
-  const [{ modalShow }, dispatch] = useStateValue();
+const Modal = ({ isModalOpen, setisModalOpen }) => {
+  const [{ cartShow }, dispatch] = useStateValue();
+  console.log(cartShow);
 
-  const openModal = () => {
+  const clearCart = () => {
     dispatch({
-      type: actionType.SET_MODAL_SHOW,
-      modalShow: true,
+      type: actionType.SET_CART_ITEMS,
+      cartItems: [],
     });
+
+    localStorage.setItem("cartItems", JSON.stringify([]));
   };
 
-  const closeModal = () => {
-    dispatch({
-      type: actionType.SET_MODAL_SHOW,
-      modalShow: false,
-    });
-  };
+  function closeModal() {
+    clearCart();
+    setisModalOpen(false);
+  }
 
   return (
     <>
-      {openModal && (
-        <Transition show={openModal} appear as={Fragment}>
+      {isModalOpen && (
+        <Transition show={isModalOpen} appear as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
               as={Fragment}

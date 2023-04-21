@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import CheckoutForm from "../components/CheckoutForm";
 import Orders from "../components/Orders";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import Modal from "../components/Modal";
-import { useStateValue } from "../contexts/StateProvider";
-import { actionType } from "../contexts/reducer";
 
 const Checkout = ({ form, setForm }) => {
-  const [{ modalShow }, dispatch] = useStateValue();
-
+  const [isModalOpen, setisModalOpen] = useState(false);
   return (
     <>
       <ToastContainer
@@ -18,16 +15,11 @@ const Checkout = ({ form, setForm }) => {
         pauseOnHover={false}
         transition={Slide}
       />
-      <Modal />
+      <Modal isModalOpen={isModalOpen} setisModalOpen={setisModalOpen} />
       <div className="relative">
         <Link to={"/"}>
           <div
-            onClick={() =>
-              dispatch({
-                type: actionType.SET_MODAL_SHOW,
-                modalShow: false,
-              })
-            }
+            onClick={() => setisModalOpen(false)}
             className="absolute p-[2px] sm:p-1 bottom-6 md:bottom-0 md:left-12 left-3 rounded-full hover:bg-slate-900/20 transition-all duration-300 cursor-pointer"
           >
             <MdKeyboardBackspace className="text-2xl md:text-3xl" />
@@ -39,9 +31,11 @@ const Checkout = ({ form, setForm }) => {
       </div>
       <div className="container p-6 md:p-12 mx-auto">
         <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
-          {form.map((userProfile) => (
-            <CheckoutForm userProfile={userProfile} setForm={setForm} />
-          ))}
+          <CheckoutForm
+            userProfile={form}
+            setForm={setForm}
+            setisModalOpen={setisModalOpen}
+          />
           <Orders />
         </div>
       </div>

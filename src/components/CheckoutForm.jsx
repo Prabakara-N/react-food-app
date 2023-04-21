@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 
-const CheckoutForm = ({ userProfile, setForm }) => {
+const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
   const { userName, email, address, number } = userProfile;
 
   const [lastName, setLastName] = useState("");
@@ -18,26 +18,12 @@ const CheckoutForm = ({ userProfile, setForm }) => {
   // const { setModalIsOpen } = useContext(CartContext);
   // const { setIsOpen } = useContext(SidebarContext);
 
-  const [{ cartShow, modalShow }, dispatch] = useStateValue();
+  const [{ cartShow }, dispatch] = useStateValue();
 
   const closeCart = () => {
     dispatch({
       type: actionType.SET_CART_SHOW,
       cartShow: !cartShow,
-    });
-  };
-
-  const openModal = () => {
-    dispatch({
-      type: actionType.SET_MODAL_SHOW,
-      modalShow: true,
-    });
-  };
-
-  const closeModal = () => {
-    dispatch({
-      type: actionType.SET_MODAL_SHOW,
-      modalShow: false,
     });
   };
 
@@ -117,10 +103,10 @@ const CheckoutForm = ({ userProfile, setForm }) => {
         toast.error("Card Expired...Please enter a valid card details");
       } else {
         closeCart();
-        openModal();
+        setisModalOpen(true);
       }
     } else {
-      closeModal();
+      setisModalOpen(false);
       toast.error("All fields are mendatory to fill");
     }
   };
@@ -352,7 +338,7 @@ const CheckoutForm = ({ userProfile, setForm }) => {
             <div className="mt-4">
               <button
                 type="submit"
-                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-blue-600 hover:bg-red-500 transition-all duration-200"
+                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-red-500 hover:bg-red-600 transition-all duration-200"
               >
                 Proceed To Pay
               </button>

@@ -55,6 +55,13 @@ body {
   overflow-x: hidden;
 }
 
+.bg-checkout {
+  background-image: url("https://res.cloudinary.com/daxmjqsy2/image/upload/v1682064953/jonathan-borba-xUtkfr-qBFU-unsplash_ilazr6.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* to remove up&down arrow in number input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

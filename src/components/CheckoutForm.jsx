@@ -338,7 +338,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
             <div className="mt-4">
               <button
                 type="submit"
-                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-red-500 hover:bg-red-600 transition-all duration-200"
+                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-slate-700 hover:bg-slate-800 transition-all duration-200"
               >
                 Proceed To Pay
               </button>

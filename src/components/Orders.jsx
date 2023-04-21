@@ -22,8 +22,8 @@ const Orders = () => {
             {cartItems.map((item) => {
               return (
                 <div key={item.id} className="flex flex-col space-y-4">
-                  <div className="flex space-x-4 mb-2">
-                    <div>
+                  <div className="flex space-x-6 mb-2">
+                    <div className="bg-slate-200 rounded-sm">
                       <img
                         src={item?.imageURL}
                         alt="cart-product"
@@ -52,10 +52,10 @@ const Orders = () => {
             Subtotal : <span className="ml-2">$ {total}</span>
           </div>
           <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-            Shipping Tax : <span className="ml-2">$ 2.5</span>
+            Shipping Tax : <span className="ml-2">$ 3</span>
           </div>
           <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
-            Total : <span className="ml-2">$ {total + 2.5}</span>
+            Total : <span className="ml-2">$ {total + 3}</span>
           </div>
         </div>
       </div>

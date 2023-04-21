@@ -90,22 +90,20 @@ const CartContainer = () => {
             </div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Delivery</p>
-              <p className="text-gray-400 text-lg">$ 2.5</p>
+              <p className="text-gray-400 text-lg">$ 3</p>
             </div>
 
             <div className="w-full border-b border-gray-600 my-2"></div>
 
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-xl font-semibold">Total</p>
-              <p className="text-gray-200 text-xl font-semibold">
-                ${tot + 2.5}
-              </p>
+              <p className="text-gray-200 text-xl font-semibold">${tot + 3}</p>
             </div>
 
             {user ? (
               <Link
                 to={"/checkout"}
-                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-center text-lg my-2 hover:shadow-lg"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 font-semibold text-center text-lg my-2 hover:shadow-lg"
               >
                 <motion.button whileTap={{ scale: 0.95 }} type="button">
                   Check Out

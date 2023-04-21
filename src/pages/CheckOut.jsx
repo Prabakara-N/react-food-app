@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import CheckoutForm from "../components/CheckoutForm";
 import Orders from "../components/Orders";
-import { Slide, ToastContainer } from "react-toastify";
 import Modal from "../components/Modal";
 
 const Checkout = ({ form, setForm }) => {
   const [isModalOpen, setisModalOpen] = useState(false);
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        pauseOnHover={false}
-        transition={Slide}
-      />
       <Modal isModalOpen={isModalOpen} setisModalOpen={setisModalOpen} />
       <div className="relative bg-checkout py-20 lg:py-52">
         <h1 className="pl-5 lg:pl-12 font-bold text-white text-md lg:text-4xl">

@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { Link } from "react-router-dom";
 import avatar from "../assets/img/profile-pic.png";
 import { useStateValue } from "../contexts/StateProvider";
 
-const UserInfo = ({ form, fetchUserDetails }) => {
+const UserInfo = ({ form }) => {
   const [{ user }] = useStateValue();
 
   const { userId, docId, address, number, city } = form;
 
-  useEffect(() => {
-    fetchUserDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, user?.uid]);
-
   return (
     <>
       <div className="bg-slate-800 w-full h-full flex flex-col min-h-screen justify-center items-center text-white">
-        <div className="bg-slate-900/50 rounded-lg p-6 w-[95%] sm:w-[450px] flex flex-col gap-y-8 mt-32 lg:mt-40 mb-10">
+        <div className="bg-slate-900/50 rounded-lg p-6 w-[95%] sm:w-[450px] flex flex-col gap-y-8 mt-32 lg:mt-40 mb-12">
           {user && user?.uid === userId ? (
             <>
               <div className="-mt-16">
@@ -52,22 +47,24 @@ const UserInfo = ({ form, fetchUserDetails }) => {
                 <p className="mb-2 pl-2">Address :</p>
                 <p className="bg-black/25 px-3 py-2 rounded-md">{address}</p>
               </div>
-              <div className="-mt-4">
+              <div className="-mt-4 ">
                 <p className="mb-2 pl-2">City :</p>
-                <p className="bg-black/25 px-3 py-2 rounded-md">{city}</p>
+                <p className="bg-black/25 px-3 py-2 rounded-md inline-block">
+                  {city}
+                </p>
               </div>
               <div className="flex justify-between items-center">
                 <Link to={`/editprofile/${docId}`}>
                   <button
                     type="button"
-                    className="bg-blue-700 inline-flex py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
+                    className="bg-blue-700 inline-flex items-center py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
                   >
                     Edit <AiFillEdit />
                   </button>
                 </Link>
-                <Link to={"/home"}>
+                <Link to={"/"}>
                   <button
-                    className="bg-blue-700 inline-flex py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
+                    className="bg-blue-700 inline-flex items-center py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
                     type="button"
                   >
                     Done <MdDone />
@@ -117,7 +114,7 @@ const UserInfo = ({ form, fetchUserDetails }) => {
               <div className="flex justify-between items-center">
                 <Link to={`/addprofile`}>
                   <button
-                    className="bg-blue-700 inline-flex py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
+                    className="bg-blue-700 inline-flex items-center py-2 px-3 gap-2 rounded-lg hover:bg-blue-800 transition-all duration-200"
                     type="button"
                   >
                     Add Profile <AiFillEdit />

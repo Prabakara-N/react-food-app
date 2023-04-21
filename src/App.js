@@ -15,11 +15,12 @@ import { AnimatePresence } from "framer-motion";
 import { useStateValue } from "./contexts/StateProvider";
 import { getAllFoodItems } from "./utils/firebasefunctions";
 import { actionType } from "./contexts/reducer";
-import { ToastContainer } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase.config";
 
+// user initial state
 const initialState = {
   userId: null,
   docId: null,
@@ -34,6 +35,7 @@ const App = () => {
   const [{ user }, dispatch] = useStateValue();
   const [form, setForm] = useState(initialState);
 
+  // getting all the fooditems
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
       dispatch({
@@ -56,13 +58,17 @@ const App = () => {
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.docs.map((doc) => {
-        setForm({ ...form, docId: doc.id });
         const userData = doc.data();
+        console.log(userData);
         if (userData) {
-          setForm({ ...form, userId: userData.userId });
-          setForm({ ...form, number: userData.number });
-          setForm({ ...form, address: userData.address });
-          setForm({ ...form, city: userData.city });
+          setForm({
+            ...form,
+            docId: doc.id,
+            userId: userData.userId,
+            number: userData.number,
+            address: userData.address,
+            city: userData.city,
+          });
         }
         return doc.id;
       });
@@ -77,8 +83,12 @@ const App = () => {
   return (
     <AnimatePresence mode="wait">
       <div className="w-screen h-auto flex flex-col bg-primary">
-        <Header />
-        <ToastContainer position="top-center" />
+        <Header clearData={setForm} />
+        <ToastContainer
+          position="top-right"
+          pauseOnHover={false}
+          transition={Slide}
+        />
         <Routes>
           <Route path="/" element={<MainContainer />} />
           <Route path="/menu" element={<MenuContainer />} />
@@ -87,12 +97,7 @@ const App = () => {
             path="/checkout"
             element={<Checkout form={form} setForm={setForm} />}
           />
-          <Route
-            path="/userinfo"
-            element={
-              <UserInfo form={form} fetchUserDetails={fetchUserDetails} />
-            }
-          />
+          <Route path="/userinfo" element={<UserInfo form={form} />} />
           <Route
             path="/addprofile"
             element={<AddProfile form={form} setForm={setForm} />}

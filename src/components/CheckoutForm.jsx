@@ -12,7 +12,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
 
-  const [{ cartShow }, dispatch] = useStateValue();
+  const [{ cartShow, user }, dispatch] = useStateValue();
 
   const closeCart = () => {
     dispatch({
@@ -75,15 +75,9 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (
-      userName &&
-      email &&
-      number &&
-      address &&
-      city &&
-      postCode &&
-      cardNum &&
-      year &&
-      cvv
+      userName ||
+      email ||
+      (number && address && city && postCode && cardNum && year && cvv)
     ) {
       if (postCode.length < 6) {
         toast.error("Post code must be 6 digits");
@@ -127,7 +121,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
                 <input
                   id="firstName"
                   type="text"
-                  value={userName}
+                  value={userName ? userName : user?.displayName}
                   onChange={(e) =>
                     setForm({ ...userProfile, userName: e.target.value })
                   }
@@ -163,7 +157,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
                 <input
                   id="Email"
                   type="text"
-                  value={email}
+                  value={email ? email : user?.email}
                   onChange={(e) =>
                     setForm({ ...userProfile, email: e.target.value })
                   }

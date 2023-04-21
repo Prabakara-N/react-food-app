@@ -11,7 +11,7 @@ import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 import { FaUserCircle } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({ clearData }) => {
   // onLogin
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
@@ -40,6 +40,15 @@ const Header = () => {
     setIsMenu(false);
     localStorage.clear();
     dispatch({ type: actionType.SET_USER, user: null });
+    clearData({
+      userId: null,
+      docId: null,
+      userName: "",
+      email: "",
+      number: "",
+      address: "",
+      city: "",
+    });
   };
 
   // cart

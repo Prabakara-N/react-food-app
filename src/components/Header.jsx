@@ -145,7 +145,10 @@ const Header = ({ clearData, cartItems }) => {
 
                 {user && (
                   <Link to={"userinfo"}>
-                    <p className="px-4 py-2 flex items-center gap-1 sm:gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg">
+                    <p
+                      onClick={() => setIsMenu(false)}
+                      className="px-4 py-2 flex items-center gap-1 sm:gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                    >
                       Profile <FaUserCircle />
                     </p>
                   </Link>
@@ -215,7 +218,10 @@ const Header = ({ clearData, cartItems }) => {
 
               {user && (
                 <Link to={"userinfo"}>
-                  <p className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg">
+                  <p
+                    onClick={() => setIsMenu(false)}
+                    className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                  >
                     Profile <FaUserCircle />
                   </p>
                 </Link>

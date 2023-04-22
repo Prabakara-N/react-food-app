@@ -31,6 +31,7 @@ const initialState = {
   city: "",
 };
 
+// get food items
 const cartInfo = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];

@@ -56,7 +56,6 @@ const CartItem = ({ item, setFlag, flag, cartItems, setCartItems }) => {
       <div className="group flex items-center gap-2 ml-auto cursor-pointer">
         <motion.div
           whileTap={{ scale: 0.85 }}
-          // onClick={() => updateQty("remove", item?.id)}
           onClick={() => decreaseQty(item?.id)}
         >
           <BiMinus className="text-gray-50 " />
@@ -68,7 +67,6 @@ const CartItem = ({ item, setFlag, flag, cartItems, setCartItems }) => {
 
         <motion.div
           whileTap={{ scale: 0.85 }}
-          // onClick={() => updateQty("add", item?.id)}
           onClick={() => increaseQty(item?.id)}
         >
           <BiPlus className="text-gray-50 " />

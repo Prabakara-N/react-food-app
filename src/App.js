@@ -32,7 +32,7 @@ const initialState = {
 };
 
 const App = () => {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, cartItems }, dispatch] = useStateValue();
   const [form, setForm] = useState(initialState);
 
   // getting all the fooditems
@@ -49,6 +49,11 @@ const App = () => {
     fetchData(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // localstorage set item
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   // getting user profile
   const fetchUserDetails = async () => {
     if (user && user?.uid) {
@@ -59,7 +64,6 @@ const App = () => {
       const querySnapshot = await getDocs(q);
       querySnapshot.docs.map((doc) => {
         const userData = doc.data();
-        console.log(userData);
         if (userData) {
           setForm({
             ...form,
@@ -97,10 +101,10 @@ const App = () => {
             path="/checkout"
             element={<Checkout form={form} setForm={setForm} />}
           />
-          <Route path="/userinfo" element={<UserInfo form={form} />} />
+          <Route path="/userinfo" element={user && <UserInfo form={form} />} />
           <Route
             path="/addprofile"
-            element={<AddProfile form={form} setForm={setForm} />}
+            element={user && <AddProfile form={form} setForm={setForm} />}
           />
           <Route
             path="/editprofile/:id"

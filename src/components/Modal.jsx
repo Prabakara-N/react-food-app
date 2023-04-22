@@ -14,8 +14,6 @@ const Modal = ({ isModalOpen, setisModalOpen }) => {
       type: actionType.SET_CART_ITEMS,
       cartItems: [],
     });
-
-    localStorage.setItem("cartItems", JSON.stringify([]));
   };
 
   function closeModal() {

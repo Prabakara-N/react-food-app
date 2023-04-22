@@ -35,11 +35,7 @@ const CartContainer = () => {
       cartItems: [],
     });
 
-    if (cartItems.length > 0) {
-      toast.success("Cart Cleared Successfully...!");
-    }
-
-    localStorage.setItem("cartItems", JSON.stringify([]));
+    toast.success("Cart Cleared Successfully...!");
   };
 
   return (

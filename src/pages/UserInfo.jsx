@@ -84,13 +84,13 @@ const UserInfo = ({ form }) => {
               <div className="text-center">
                 <p className="mb-2">Name :</p>
                 <h2 className="text-center text-lg font-medium bg-black/25 px-2 py-1 rounded-md w-[65%] mx-auto text-gray-500">
-                  {user?.displayName}
+                  {user ? user.displayName : "nill"}
                 </h2>
               </div>
               <div>
                 <p className="mb-4 pl-2">Email :</p>
                 <p className="text-center bg-black/25 px-2 py-2 pr-32 rounded-md inline text-gray-500">
-                  {user?.email}
+                  {user ? user.email : "nill"}
                 </p>
               </div>
               <div>

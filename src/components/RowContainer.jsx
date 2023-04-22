@@ -10,6 +10,8 @@ const RowContainer = ({ flag, data, id }) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [items, setItems] = useState(cartItems);
 
+  console.log(data);
+
   // // add to cart
   const addToCart = (item) => {
     const existingItem = items.find((cartItem) => cartItem.id === item.id);
@@ -37,7 +39,7 @@ const RowContainer = ({ flag, data, id }) => {
       type: actionType.SET_CART_ITEMS,
       cartItems: items,
     });
-    localStorage.setItem("cartItems", JSON.stringify(items)); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   return (

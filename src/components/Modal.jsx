@@ -5,21 +5,19 @@ import { FcOk } from "react-icons/fc";
 import { actionType } from "../contexts/reducer";
 import { useStateValue } from "../contexts/StateProvider";
 
-const Modal = ({ isModalOpen, setisModalOpen }) => {
+const Modal = ({ isModalOpen, setisModalOpen, setCartItems }) => {
   const [{ cartShow }, dispatch] = useStateValue();
   console.log(cartShow);
 
-  const clearCart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: [],
-    });
+  const closeCart = () => {
+    dispatch({ type: actionType.SET_CART_SHOW, cartShow: false });
   };
 
-  function closeModal() {
-    clearCart();
+  const closeModal = () => {
+    setCartItems([]);
     setisModalOpen(false);
-  }
+    closeCart();
+  };
 
   return (
     <>

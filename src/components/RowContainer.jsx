@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
 import NotFound from "../assets/img/NotFound.svg";
-import { useStateValue } from "../contexts/StateProvider";
-import { actionType } from "../contexts/reducer";
 import { toast } from "react-toastify";
 
-const RowContainer = ({ flag, data, id }) => {
-  const [{ cartItems }, dispatch] = useStateValue();
-  const [items, setItems] = useState(cartItems);
-
-  console.log(data);
-
-  // // add to cart
+const RowContainer = ({ flag, data, id, cartItems, setCartItems }) => {
+  // Add to cart
   const addToCart = (item) => {
-    const existingItem = items.find((cartItem) => cartItem.id === item.id);
+    const existingItem = cartItems?.find((cartItem) => cartItem.id === item.id);
     if (existingItem) {
       // If item already exists in cart, update the quantity
-      setItems(
-        items.map((cartItem) =>
+      setCartItems(
+        cartItems?.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, qty: cartItem.qty + 1 }
             : cartItem
@@ -26,21 +19,13 @@ const RowContainer = ({ flag, data, id }) => {
       );
     } else {
       // If item does not exist in cart, add a new entry
-      setItems([...items, { ...item }]);
+      setCartItems([...cartItems, { ...item, qty: 1 }]);
     }
 
     toast.success("Item added to cart successfully...!", {
       autoClose: 2500,
     });
   };
-
-  useEffect(() => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: items,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
 
   return (
     <div

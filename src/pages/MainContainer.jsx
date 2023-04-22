@@ -8,7 +8,7 @@ import MenuContainer from "./MenuContainer";
 import CartContainer from "../components/CartContainer";
 import FooterImages from "../components/FooterImages";
 
-const MainContainer = () => {
+const MainContainer = ({ cartItems, setCartItems }) => {
   const [{ foodItems, cartShow }] = useStateValue();
   // id for scroll
   const id = "slider";
@@ -55,11 +55,15 @@ const MainContainer = () => {
             <RowContainer
               id={id}
               flag={true}
+              cartItems={cartItems}
+              setCartItems={setCartItems}
               data={foodItems?.filter((item) => item.category === "fruits")}
             />
           </section>
-          <MenuContainer />
-          {cartShow && <CartContainer />}
+          <MenuContainer cartItems={cartItems} setCartItems={setCartItems} />
+          {cartShow && (
+            <CartContainer cartItems={cartItems} setCartItems={setCartItems} />
+          )}
           <FooterImages />
         </div>
       </main>

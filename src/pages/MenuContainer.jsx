@@ -6,7 +6,7 @@ import { useStateValue } from "../contexts/StateProvider";
 import RowContainer from "../components/RowContainer";
 import { CartContainer } from "../components";
 
-const MenuContainer = () => {
+const MenuContainer = ({ cartItems, setCartItems }) => {
   const [filter, setFilter] = useState("chicken");
   const [{ foodItems, cartShow }] = useStateValue();
 
@@ -64,6 +64,8 @@ const MenuContainer = () => {
             <div className="w-full">
               <RowContainer
                 flag={false}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
                 data={foodItems?.filter(
                   (foodItem) => foodItem.category === filter
                 )}

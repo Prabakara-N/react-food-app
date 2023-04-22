@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useStateValue } from "../contexts/StateProvider";
 
-const Orders = () => {
+const Orders = ({ cartItems }) => {
   const [total, setTot] = useState(0);
-
-  const [{ cartItems }] = useStateValue();
 
   useEffect(() => {
     let totalPrice = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
-    setTot(totalPrice); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total]); // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTot(totalPrice);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total]);
 
   return (
     <>

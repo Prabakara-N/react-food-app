@@ -31,9 +31,14 @@ const initialState = {
   city: "",
 };
 
+const cartInfo = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
 const App = () => {
-  const [{ user, cartItems }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   const [form, setForm] = useState(initialState);
+  const [cartItems, setCartItems] = useState(cartInfo);
 
   // getting all the fooditems
   const fetchData = async () => {
@@ -87,19 +92,34 @@ const App = () => {
   return (
     <AnimatePresence mode="wait">
       <div className="w-screen h-auto flex flex-col bg-primary">
-        <Header clearData={setForm} />
+        <Header clearData={setForm} cartItems={cartItems} />
         <ToastContainer
           position="top-right"
           pauseOnHover={false}
           transition={Slide}
         />
         <Routes>
-          <Route path="/" element={<MainContainer />} />
+          <Route
+            path="/"
+            element={
+              <MainContainer
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
           <Route path="/menu" element={<MenuContainer />} />
           <Route path="/createItem" element={<CreateContainer />} />
           <Route
             path="/checkout"
-            element={<Checkout form={form} setForm={setForm} />}
+            element={
+              <Checkout
+                form={form}
+                setForm={setForm}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
           />
           <Route path="/userinfo" element={user && <UserInfo form={form} />} />
           <Route

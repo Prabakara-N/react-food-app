@@ -11,11 +11,11 @@ import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 import { FaUserCircle } from "react-icons/fa";
 
-const Header = ({ clearData }) => {
+const Header = ({ clearData, cartItems }) => {
   // onLogin
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
+  const [{ user, cartShow }, dispatch] = useStateValue();
 
   const [isMenu, setIsMenu] = useState(false);
 

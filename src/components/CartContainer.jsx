@@ -10,8 +10,8 @@ import CartItem from "./CartItem";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-const CartContainer = () => {
-  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
+const CartContainer = ({ cartItems, setCartItems }) => {
+  const [{ cartShow, user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0);
 
@@ -23,18 +23,15 @@ const CartContainer = () => {
   };
 
   useEffect(() => {
-    let totalPrice = cartItems.reduce(function (accumulator, item) {
+    let totalPrice = cartItems?.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
-    setTot(totalPrice); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tot, flag]); // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTot(totalPrice);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tot, flag]);
 
   const clearCart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: [],
-    });
-
+    setCartItems([]);
     toast.success("Cart Cleared Successfully...!");
   };
 
@@ -71,6 +68,8 @@ const CartContainer = () => {
               cartItems.map((item) => (
                 <CartItem
                   key={item.id}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
                   item={item}
                   setFlag={setFlag}
                   flag={flag}

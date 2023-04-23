@@ -98,6 +98,7 @@ const App = () => {
           position="top-right"
           pauseOnHover={false}
           transition={Slide}
+          draggable
         />
         <Routes>
           <Route

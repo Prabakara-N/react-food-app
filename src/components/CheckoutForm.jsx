@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
+import LoadingBtn from "./LoadingBtn";
 
 const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
   const { userName, email, address, number, city } = userProfile;
-
   const [lastName, setLastName] = useState("");
   const [postCode, setPostCode] = useState("");
   const [cardNum, setCardNum] = useState("");
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [{ cartShow, user }, dispatch] = useStateValue();
 
@@ -91,7 +92,11 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
         toast.error("Card Expired...Please enter a valid card details");
       } else {
         closeCart();
-        setisModalOpen(true);
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          setisModalOpen(true);
+        }, 2500);
       }
     } else {
       setisModalOpen(false);
@@ -326,12 +331,16 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
             </div>
 
             <div className="mt-4">
-              <button
-                type="submit"
-                className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-gradient-to-tr from-orange-400 to-orange-600"
-              >
-                Proceed To Pay
-              </button>
+              {isLoading ? (
+                <LoadingBtn />
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-gradient-to-tr from-orange-400 to-orange-600"
+                >
+                  Proceed To Pay
+                </button>
+              )}
             </div>
           </div>
         </form>

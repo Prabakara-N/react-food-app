@@ -38,7 +38,6 @@ const Header = ({ clearData, cartItems }) => {
   // logout
   const logOut = () => {
     setIsMenu(false);
-    localStorage.clear();
     dispatch({ type: actionType.SET_USER, user: null });
     clearData({
       userId: null,

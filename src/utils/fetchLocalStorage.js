@@ -7,3 +7,12 @@ export const fetchUser = () => {
 
   return userInfo;
 };
+
+// order info
+export const fetchOrder = () => {
+  const orderData = localStorage.getItem("foodorders")
+    ? JSON.parse(localStorage.getItem("foodorders"))
+    : [];
+
+  return orderData;
+};

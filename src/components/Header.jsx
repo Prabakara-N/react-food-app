@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/img/chicken-grilled-logo.png";
 import avatar from "../assets/img/profile-pic.png";
 import { motion } from "framer-motion";
-import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
+import { MdShoppingBasket, MdAdd, MdLogout, MdFastfood } from "react-icons/md";
 import { Link } from "react-router-dom";
 // firebase
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -143,15 +143,27 @@ const Header = ({ clearData, cartItems }) => {
                 )}
 
                 {user && (
-                  <Link to={"userinfo"}>
+                  <Link to={"/userinfo"}>
                     <p
                       onClick={() => setIsMenu(false)}
-                      className="px-4 py-2 flex items-center gap-1 sm:gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                      className="px-4 py-2 flex items-center gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
                     >
                       Profile <FaUserCircle />
                     </p>
                   </Link>
                 )}
+
+                {user && (
+                  <Link to={"orderinfo"}>
+                    <p
+                      onClick={() => setIsMenu(false)}
+                      className="px-4 py-2 flex items-center gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                    >
+                      My Orders <MdFastfood />
+                    </p>
+                  </Link>
+                )}
+
                 <p
                   className="m-2 shadow-md p-2 flex items-center justify-center bg-slate-200 gap-3 cursor-pointer hover:bg-slate-300 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
                   onClick={logOut}
@@ -219,9 +231,20 @@ const Header = ({ clearData, cartItems }) => {
                 <Link to={"userinfo"}>
                   <p
                     onClick={() => setIsMenu(false)}
-                    className="px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                    className="px-4 py-2 flex items-center gap-1 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
                   >
                     Profile <FaUserCircle />
+                  </p>
+                </Link>
+              )}
+
+              {user && (
+                <Link to={"orderinfo"}>
+                  <p
+                    onClick={() => setIsMenu(false)}
+                    className="px-4 py-2 flex items-center gap-2 cursor-pointer hover:bg-slate-200 transition-all duration-100 ease-in-out text-textColor text-base rounded-lg"
+                  >
+                    My Orders <MdFastfood />
                   </p>
                 </Link>
               )}

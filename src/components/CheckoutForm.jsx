@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";
 import LoadingBtn from "./LoadingBtn";
 
-const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
+const CheckoutForm = ({ userProfile, setForm, setisModalOpen, cartItems }) => {
+  const [{ cartShow, user, orders }, dispatch] = useStateValue();
+
   const { userName, email, address, number, city } = userProfile;
   const [lastName, setLastName] = useState("");
   const [postCode, setPostCode] = useState("");
@@ -12,8 +14,11 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
   const [year, setYear] = useState("");
   const [cvv, setCvv] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [orderInfo, setOrderInfo] = useState(orders);
 
-  const [{ cartShow, user }, dispatch] = useStateValue();
+  useEffect(() => {
+    setOrderInfo(orders);
+  }, [orders]);
 
   const closeCart = () => {
     dispatch({
@@ -93,6 +98,11 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
       } else {
         closeCart();
         setIsLoading(true);
+        const updatedOrderInfo = [...orderInfo, ...cartItems];
+        dispatch({
+          type: actionType.SET_ORDER_INFO,
+          orders: updatedOrderInfo,
+        });
         setTimeout(() => {
           setIsLoading(false);
           setisModalOpen(true);
@@ -336,7 +346,7 @@ const CheckoutForm = ({ userProfile, setForm, setisModalOpen }) => {
               ) : (
                 <button
                   type="submit"
-                  className="w-full lg:w-auto px-6 py-2 rounded-md font-medium text-white bg-gradient-to-tr from-orange-400 to-orange-600"
+                  className="w-full lg:w-auto px-6 py-2.5 rounded-md font-medium text-white bg-gradient-to-tr from-orange-400 to-orange-600"
                 >
                   Proceed To Pay
                 </button>

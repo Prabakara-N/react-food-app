@@ -10,6 +10,7 @@ import {
   Checkout,
   UserInfo,
   AddProfile,
+  OrderSummary,
 } from "./pages";
 import { AnimatePresence } from "framer-motion";
 import { useStateValue } from "./contexts/StateProvider";
@@ -37,7 +38,7 @@ const cartInfo = localStorage.getItem("cartItems")
   : [];
 
 const App = () => {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, orders }, dispatch] = useStateValue();
   const [form, setForm] = useState(initialState);
   const [cartItems, setCartItems] = useState(cartInfo);
 
@@ -59,6 +60,10 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem("foodorders", JSON.stringify(orders));
+  }, [orders]);
 
   // getting user profile
   const fetchUserDetails = async () => {
@@ -122,6 +127,10 @@ const App = () => {
                 setCartItems={setCartItems}
               />
             }
+          />
+          <Route
+            path="/orderinfo"
+            element={user && <OrderSummary form={form} />}
           />
           <Route path="/userinfo" element={user && <UserInfo form={form} />} />
           <Route

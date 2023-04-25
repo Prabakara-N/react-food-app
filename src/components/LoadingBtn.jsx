@@ -6,7 +6,7 @@ const LoadingBtn = () => {
       <button
         disabled
         type="submit"
-        className="text-white bg-gradient-to-tr font-medium from-orange-400 to-orange-600 focus:ring-4 focus:ring-orange-300 rounded-md text-[1rem] px-6 py-2 text-center mr-2 dark:bg-orange-600 dark:focus:ring-orange-700 inline-flex items-center"
+        className="text-white w-full lg:w-auto bg-gradient-to-tr font-medium from-orange-400 to-orange-600 focus:ring-4 focus:ring-orange-300 rounded-md text-[1rem] px-6 py-2.5 text-center dark:bg-orange-600 dark:focus:ring-orange-700 inline-flex items-center"
       >
         <svg
           aria-hidden="true"

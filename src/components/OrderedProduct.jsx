@@ -49,13 +49,22 @@ const OrderedProduct = () => {
                   </h3>
                 </div>
                 <div className="flex justify-between space-x-8 items-start w-full">
-                  <p className="text-base xl:text-lg leading-6">
+                  <p className="text-base flex flex-col items-center xl:text-lg leading-6">
+                    <span className="md:hidden underline text-[0.9rem] font-medium text-gray-600">
+                      Prize
+                    </span>
                     $ {item.price}
                   </p>
-                  <p className="text-base xl:text-lg leading-6 text-gray-800">
+                  <p className="text-base flex flex-col items-center xl:text-lg leading-6 text-gray-800">
+                    <span className="md:hidden underline text-[0.9rem] font-medium text-gray-600">
+                      Quantity
+                    </span>
                     {item.qty}
                   </p>
-                  <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">
+                  <p className="text-base flex flex-col items-center xl:text-lg font-semibold leading-6 text-gray-800">
+                    <span className="md:hidden underline text-[0.9rem] font-medium text-red-600">
+                      Total Prize
+                    </span>
                     $ {item.price * item.qty}
                   </p>
                 </div>

@@ -4,7 +4,6 @@ import { OrderedProduct, OrderedUser } from "../components";
 
 const OrderSummary = ({ form }) => {
   const [{ orders }] = useStateValue();
-
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -13,6 +12,7 @@ const OrderSummary = ({ form }) => {
     }, 0);
     setTotal(orderTotal);
   }, [orders]);
+
   return (
     <>
       {orders.length < 1 ? (

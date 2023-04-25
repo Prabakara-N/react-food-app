@@ -3,12 +3,27 @@ import { useStateValue } from "../contexts/StateProvider";
 
 const OrderedProduct = () => {
   const [{ orders }] = useStateValue();
+
   return (
     <>
       <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
         <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
           Customer’s Cart
         </p>
+        <div className="hidden mt-4 font-semibold underline text-gray-700 md:block w-full">
+          <div className=" flex justify-between">
+            <div className="flex-1 flex justify-center">
+              <h1 className="text-xl">
+                {orders.length > 1 ? "Food Items" : "Food Item"}
+              </h1>
+            </div>
+            <div className="flex flex-1 justify-between">
+              <p className="pl-20">Prize</p>
+              <p className="pl-14">Quantity</p>
+              <p>Total Prize</p>
+            </div>
+          </div>
+        </div>
         {orders.map((item) => {
           return (
             <div
@@ -17,12 +32,12 @@ const OrderedProduct = () => {
             >
               <div className="pb-4 md:pb-8 w-full md:w-40">
                 <img
-                  className="w-full hidden md:block"
+                  className="w-full order-img hidden md:block"
                   src={item.imageURL}
                   alt="ordered-img"
                 />
                 <img
-                  className="w-36 mx-auto md:hidden"
+                  className="w-36 order-img mx-auto md:hidden"
                   src={item.imageURL}
                   alt="ordered-img"
                 />

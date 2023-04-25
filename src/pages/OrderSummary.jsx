@@ -22,7 +22,7 @@ const OrderSummary = ({ form }) => {
           </h1>
           <div>
             <img
-              src="https://assets.materialup.com/uploads/c49f60e7-655f-4ddd-bf29-7e702828d651/preview.png"
+              src="https://i.pinimg.com/736x/97/40/79/974079cd8632e1a803b3bec915d0254f.jpg"
               alt="no-orders"
               className="h-[80vh]"
             />

@@ -3,7 +3,7 @@ import logo from "../assets/img/chicken-grilled-logo.png";
 import avatar from "../assets/img/profile-pic.png";
 import { motion } from "framer-motion";
 import { MdShoppingBasket, MdAdd, MdLogout, MdFastfood } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // firebase
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from ".././firebase.config";
@@ -18,6 +18,8 @@ const Header = ({ clearData, cartItems }) => {
   const [{ user, cartShow }, dispatch] = useStateValue();
 
   const [isMenu, setIsMenu] = useState(false);
+
+  const navigate = useNavigate();
 
   // login
   const logIn = async () => {
@@ -48,6 +50,7 @@ const Header = ({ clearData, cartItems }) => {
       address: "",
       city: "",
     });
+    navigate("/");
   };
 
   // cart

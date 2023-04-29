@@ -25,7 +25,7 @@ const Orders = ({ cartItems }) => {
                       <img
                         src={item?.imageURL}
                         alt="cart-product"
-                        className="w-[100px] h-[70px]"
+                        className="w-[100px] h-[70px] order-img"
                       />
                     </div>
                     <div>

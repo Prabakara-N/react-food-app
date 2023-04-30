@@ -87,8 +87,8 @@ const OrderSummary = ({ form }) => {
                         <p className="text-lg leading-6 font-semibold text-gray-800">
                           DPD Delivery
                           <br />
-                          <span className="font-normal">
-                            Delivery with 24 Hours
+                          <span className="font-normal text-xs md:text-base lg:text-lg">
+                            Delivery within 30 Minutes
                           </span>
                         </p>
                       </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiRefreshFill } from "react-icons/ri";
-
 import { motion } from "framer-motion";
 import { useStateValue } from "../contexts/StateProvider";
 import { actionType } from "../contexts/reducer";

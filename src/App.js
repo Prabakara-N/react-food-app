@@ -85,7 +85,7 @@ const App = () => {
             city: userData.city,
           });
         }
-        return doc.id;
+        return doc;
       });
     }
   };
@@ -103,7 +103,7 @@ const App = () => {
           position="top-right"
           pauseOnHover={false}
           transition={Slide}
-          draggable
+          draggable={true}
         />
         <Routes>
           <Route
